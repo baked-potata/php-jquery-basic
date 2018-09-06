@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <input type="text" name="n1" id="1">
+  <input type="text" name="address" id="2">
+  <input type="mail" name="E-mail" id="3">
+ 
+<button id="btn">papita</button>
+
+<br>
+<div id="d1">
+  <table id='tb1' class="table table-striped">
+    
+   
+
+  </table>
+
+</div>
+</div>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+</body>
+
+
+<script>
+  function read(){
+    $.ajax({
+      type:'POST',
+      url:'read.php',
+      success:function(h){
+          $('#tb1').html(h);
+      }
+
+    });
+  }
+ 
+$(document).ready(function(){
+  read();
+  /*
+  $('body').on('click','#dlt',function(){
+    var dlt= $(this).attr('data-id');
+    //alert(dlt);
+    $.ajax({
+      type:'POST',
+      url:'dlt.php',
+      data:{id:dlt},
+      success:function(d){
+        read();
+      }
+    });
+  });*/
+  $('body').on('click','#dlt',function(){
+    var dt=$(this).attr('data-id');
+    $.ajax({
+      type:'POST',
+      url:'dlt.php',
+      data:{id:dt},
+      success:function(d){
+        alert("deleted");
+        read
+      }
+    });
+
+  });
+  $('body').on('click','#edt',function(){
+      $('#btn').html('Update');
+      var ed=$(this).attr('data-id');
+      alert(ed);
+      $('#btn').attr('data-id',ed);
+      $('#btn').attr('id','upd');
+      $('#1').val('babita');$('#2').val('babita');$('#3').val('babita');
+
+  });
+$('body').on('click','#btn',function(){
+
+var a= $('#1').val();
+var b=$('#2').val();
+var c= $('#3').val();
+$.ajax({
+    type:'POST',
+    url:'fnc.php',
+    data:{sa:a,sb:b,sc:c},
+    success:function(h){
+        alert("done");
+      read();
+    }
+});
+
+});
+
+
+
+});
+
+</script>
+
+
+<!--<script>
+  $(document).ready(function(){
+    var a=prompt(a);
+      var b=a%10;
+      var c=a/10;
+      var d=c*10+b;
+      console.log(d);
+
+
+  });
+
+  
+
+
+</script>-->
+</html>
+
+
+
+<!DOCTYPE html>
+<html>
+<frameset cols=(50,50)>
+  <frame src="https://www.google.com">
+</frameset>
+</html>
